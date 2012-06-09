@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 老王博客
+title: 首页
 ---
 <div class="row">
   <div class="span12">
