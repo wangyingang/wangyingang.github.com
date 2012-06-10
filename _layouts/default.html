@@ -10,6 +10,7 @@
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
+    {% if page.pretty_print %}<link href="/assets/css/bootstrap-prettify.css" rel="stylesheet">{% endif %}
     <link rel="shortcut icon" href="/assets/ico/favicon.ico">
     <!--
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -67,5 +68,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write("<script src='/assets/js/jquery-1.7.2.min.js'>\x3C/script>")</script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    {% if page.pretty_print %}
+    <script src="/assets/js/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+         $('pre').addClass('prettyprint linenums');// 为markdown语法生成的pre标签添加google code prettify所需class     
+         window.prettyPrint();//启动google prettify
+       });
+    </script>
+    {% endif %}
   </body>
 </html>
