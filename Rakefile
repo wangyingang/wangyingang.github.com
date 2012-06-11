@@ -10,13 +10,12 @@ CONFIG = {
   'post_ext' => "md"
 }
 
-# Usage: rake post etitle="A Title" ctitle="标题" [date="2012-02-09"]
+# Usage: rake post title="A Title" [date="2012-02-09"]
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
   abort("rake aborted: '#{CONFIG['posts']}' directory not found.") unless FileTest.directory?(CONFIG['posts'])
-  etitle = ENV["etitle"] || "new-post"
-  ctitle = ENV["ctitle"] || etitle
-  slug = etitle.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+  title = ENV["title"] || "new-post"
+  slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   begin
     date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
   rescue Exception => e
@@ -32,8 +31,8 @@ task :post do
   open(filename, 'w') do |post|
     post.puts "---"
     post.puts "layout: post"
-    post.puts "title: \"#{ctitle.gsub(/-/,' ')}\""
-    post.puts 'description: ""'
+    post.puts "title: \"#{title.gsub(/-/,' ')}\""
+    post.puts 'description: '
     post.puts "category: "
     post.puts "tags: []"
     post.puts "---"
